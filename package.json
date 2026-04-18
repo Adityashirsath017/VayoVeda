@@ -2,6 +2,12 @@
   "name": "vayomitra",
   "main": "expo-router/entry",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "overrides": {
+    "@types/react": "19.0.10"
+  },
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
