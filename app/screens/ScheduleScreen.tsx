@@ -296,10 +296,8 @@ const ScheduleScreen: React.FC = () => {
         };
         tasksToUpload.push(taskData);
 
-        // 3. SMS Schedule prep
-        const SERVER_URL = Platform.OS === 'web'
-          ? "http://localhost:5000"
-          : "http://192.168.29.231:5000"; // IMPORTANT: Change this to your PC's actual IPv4 Address (ipconfig)
+        // 🌏 LIVE RENDER URL
+        const SERVER_URL = "https://vayoveda.onrender.com";
 
         try {
           fetch(`${SERVER_URL}/schedule-sms`, {

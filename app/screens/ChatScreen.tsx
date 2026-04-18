@@ -25,10 +25,8 @@ export default function ChatScreen() {
   const [inputText, setInputText] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // 🔥 UPDATE THIS WITH YOUR LOCAL IP FOR MOBILE (e.g., 192.168.x.x)
-  const SERVER_URL = Platform.OS === 'web'
-    ? "http://localhost:5000"
-    : "http://192.168.1.15:5000";
+  // 🔥 UPDATED WITH LIVE RENDER URL
+  const SERVER_URL = "https://vayoveda.onrender.com";
 
   const sendMessage = async () => {
     if (!inputText.trim()) return;

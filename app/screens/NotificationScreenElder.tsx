@@ -11,9 +11,8 @@ export default function NotificationScreenElder() {
   const router = useRouter();
   const [bgColor, setBgColor] = useState("#fff");
   const [liveLocation, setLiveLocation] = useState("");
-  const SERVER_URL = Platform.OS === 'web'
-    ? "http://localhost:5000"
-    : "http://192.168.1.15:5000"; // Use your actual local IP for native
+  // 🌏 LIVE RENDER URL
+  const SERVER_URL = "https://vayoveda.onrender.com";
 
 
 
