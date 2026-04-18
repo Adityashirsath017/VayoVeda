@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Vayoveda",
-    "slug": "vayomitra",
+    "name": "VayoVeda",
+    "slug": "vayoveda",
     "owner": "adityashirsath017",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -18,7 +18,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.adityashirsath017.vayomitra"
+      "package": "com.adityashirsath017.vayoveda"
     },
     "web": {
       "bundler": "metro",
@@ -44,9 +44,7 @@
     },
     "extra": {
       "router": {},
-      "eas": {
-        "projectId": "53864966-55f2-4922-89d1-68d2a5aa0649"
-      }
+      "eas": {}
     }
   }
 }
