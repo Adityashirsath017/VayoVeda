@@ -17,6 +17,11 @@
   "jest": {
     "preset": "jest-expo"
   },
+  "expo": {
+    "install": {
+      "exclude": ["react-native-worklets"]
+    }
+  },
   "dependencies": {
     "@expo-google-fonts/kumbh-sans": "^0.2.3",
     "@expo/vector-icons": "^15.0.3",
@@ -79,6 +84,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@types/jest": "^29.5.12",
     "@types/react": "~19.1.10",
     "@types/react-test-renderer": "^19.0.0",
