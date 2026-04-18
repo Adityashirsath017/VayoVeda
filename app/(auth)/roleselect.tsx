@@ -39,7 +39,7 @@ const RoleSelectionScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Image source={require("../../assets/images/vayoicon.png")} style={styles.logo} />
+      <Image source={require("../../assets/images/vayoicon.jpg")} style={styles.logo} />
       <Text style={styles.instruction}>Please select your role:</Text>
 
       {/* Role Selection */}

@@ -41,7 +41,7 @@ const OnboardingScreen = () => {
   return (
     <View style={styles.container}>
       {/* Logo at the top */}
-      <Image source={require("../../assets/images/vayoicon.png")} style={styles.logo} />
+      <Image source={require("../../assets/images/vayoicon.jpg")} style={styles.logo} />
 
       <FlatList
         ref={flatListRef}
