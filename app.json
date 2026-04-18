@@ -13,7 +13,6 @@
       "supportsTablet": true
     },
     "android": {
-      "usesCleartextTraffic": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -37,14 +36,24 @@
         }
       ],
       "expo-font",
-      "expo-web-browser"
+      "expo-web-browser",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
     },
     "extra": {
       "router": {},
-      "eas": {}
+      "eas": {
+        "projectId": "fdabe834-4e32-4626-b17a-20bb186e88a9"
+      }
     }
   }
 }
