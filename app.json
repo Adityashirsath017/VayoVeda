@@ -5,7 +5,7 @@
     "owner": "adityashirsath017",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/adaptive-icon.png",
+    "icon": "./assets/images/vayo-app-icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -14,8 +14,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/vayo-app-icon.png",
+        "backgroundColor": "#FF6B6B"
       },
       "package": "com.adityashirsath017.vayoveda"
     },
