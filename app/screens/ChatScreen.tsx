@@ -11,6 +11,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface Message {
   id: string;
@@ -24,6 +25,7 @@ export default function ChatScreen() {
   ]);
   const [inputText, setInputText] = useState('');
   const [loading, setLoading] = useState(false);
+  const insets = useSafeAreaInsets();
 
   // 🔥 UPDATED WITH LIVE RENDER URL
   const SERVER_URL = "https://vayoveda.onrender.com";
@@ -78,7 +80,7 @@ export default function ChatScreen() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
         <Text style={styles.headerTitle}>Vayoveda Health Assistant</Text>
       </View>
 
@@ -129,7 +131,6 @@ const styles = StyleSheet.create({
     paddingBottom: 90,
   },
   header: {
-    paddingTop: 50,
     paddingBottom: 20,
     backgroundColor: '#FF6B6B',
     alignItems: 'center',
@@ -196,7 +197,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderTopWidth: 1,
     borderTopColor: '#EEE',
-    marginBottom: 70, // 🔥 Added space for the absolute tab bar
+    marginBottom: 10, // 🔥 Adjusted space for the absolute tab bar
   },
   input: {
     flex: 1,

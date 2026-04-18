@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, Platform } from "react-native";
 import React, { useState } from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
@@ -6,10 +6,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { collection, query, where, getDocs, db } from "../config/firebaseConfig";
 import { useFocusEffect } from "expo-router";
 import { useRouter } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Header() {
   const router = useRouter();
   const [userName, setUserName] = useState("User");
+  const insets = useSafeAreaInsets();
 
   useFocusEffect(
     React.useCallback(() => {
@@ -37,7 +39,7 @@ export default function Header() {
   );
 
   return (
-    <View style={styles.headerContainer}>
+    <View style={[styles.headerContainer, { marginTop: Platform.OS === 'ios' ? insets.top : insets.top + 10 }]}>
       <View style={styles.textContainer}>
         <Text style={styles.greeting}>
           👋 Hello, <Text style={styles.name}>{userName}</Text>
@@ -59,7 +61,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 12,
     marginHorizontal: 10,
-    marginTop: 10,
   },
   textContainer: {
     flex: 1,

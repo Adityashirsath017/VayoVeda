@@ -66,8 +66,8 @@ export default function SignUpScreen() {
       <Image source={require("../../assets/images/elderly1.png")} style={styles.medicineImage} />
       <Text style={styles.title}>Create Account</Text>
 
-      <TextInput style={styles.input} placeholder="Enter your Email" value={email} onChangeText={setEmail} />
-      <TextInput style={styles.input} placeholder="Enter your Password" secureTextEntry value={password} onChangeText={setPassword} />
+      <TextInput style={styles.input} placeholder="Enter your Email" placeholderTextColor="#888" value={email} onChangeText={setEmail} />
+      <TextInput style={styles.input} placeholder="Enter your Password" placeholderTextColor="#888" secureTextEntry value={password} onChangeText={setPassword} />
 
       <TouchableOpacity style={styles.button} onPress={handleSignUp}>
         <Text style={styles.buttonText}>Sign Up</Text>
@@ -79,7 +79,15 @@ export default function SignUpScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#fff", padding: 20 },
   title: { fontSize: 28, fontWeight: "bold", color: "#e57373", marginBottom: 20 },
-  input: { width: "90%", padding: 15, borderRadius: 8, borderWidth: 1, borderColor: "#e57373", marginBottom: 12 },
+  input: {
+    width: "90%",
+    padding: 15,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#e57373",
+    marginBottom: 12,
+    color: "#333",
+  },
   button: { backgroundColor: "#e57373", padding: 15, borderRadius: 8, width: "90%", alignItems: "center", marginTop: 10 },
   buttonText: { color: "#fff", fontWeight: "bold", fontSize: 16 },
   googleButton: { marginTop: 15, padding: 12, borderRadius: 8, borderWidth: 1, borderColor: "#e57373", width: "90%", alignItems: "center" },

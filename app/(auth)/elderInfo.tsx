@@ -97,6 +97,7 @@ const CaretakerBasicInfo: React.FC = () => {
                   style={styles.input}
                   value={firstName}
                   onChangeText={setFirstName}
+                  placeholderTextColor="#888"
                 />
               </View>
               <View style={styles.inputContainer}>
@@ -105,6 +106,7 @@ const CaretakerBasicInfo: React.FC = () => {
                   style={styles.input}
                   value={surname}
                   onChangeText={setSurname}
+                  placeholderTextColor="#888"
                 />
               </View>
             </View>
@@ -140,6 +142,7 @@ const CaretakerBasicInfo: React.FC = () => {
               keyboardType="numeric"
               value={contact}
               onChangeText={setContact}
+              placeholderTextColor="#888"
             />
 
             <Text style={styles.label}>Address</Text>
@@ -147,6 +150,7 @@ const CaretakerBasicInfo: React.FC = () => {
               style={styles.input}
               value={address}
               onChangeText={setAddress}
+              placeholderTextColor="#888"
             />
 
             {/* Date of Birth */}
@@ -191,6 +195,7 @@ const CaretakerBasicInfo: React.FC = () => {
                   keyboardType="numeric"
                   value={height}
                   onChangeText={setHeight}
+                  placeholderTextColor="#888"
                 />
               </View>
               <View style={styles.inputContainer}>
@@ -200,6 +205,7 @@ const CaretakerBasicInfo: React.FC = () => {
                   keyboardType="numeric"
                   value={weight}
                   onChangeText={setWeight}
+                  placeholderTextColor="#888"
                 />
               </View>
             </View>
@@ -209,6 +215,7 @@ const CaretakerBasicInfo: React.FC = () => {
               style={styles.input}
               value={bloodGroup}
               onChangeText={setBloodGroup}
+              placeholderTextColor="#888"
             />
 
             <Text style={styles.label}>Medical Conditions (if any)</Text>
@@ -216,6 +223,7 @@ const CaretakerBasicInfo: React.FC = () => {
               style={styles.input}
               value={medicalConditions}
               onChangeText={setMedicalConditions}
+              placeholderTextColor="#888"
             />
 
             {/* Submit Button */}
@@ -290,6 +298,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "#FDE8E8",
     paddingHorizontal: 10,
+    color: "#333",
   },
   genderContainer: {
     flexDirection: "row",

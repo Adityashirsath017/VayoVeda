@@ -96,6 +96,7 @@ const CaretakerBasicInfo: React.FC = () => {
                   style={styles.input}
                   value={firstName}
                   onChangeText={setFirstName}
+                  placeholderTextColor="#888"
                 />
               </View>
               <View style={styles.inputContainer}>
@@ -104,6 +105,7 @@ const CaretakerBasicInfo: React.FC = () => {
                   style={styles.input}
                   value={surname}
                   onChangeText={setSurname}
+                  placeholderTextColor="#888"
                 />
               </View>
             </View>
@@ -139,6 +141,7 @@ const CaretakerBasicInfo: React.FC = () => {
               keyboardType="numeric"
               value={contact}
               onChangeText={setContact}
+              placeholderTextColor="#888"
             />
 
             {/* Address */}
@@ -147,6 +150,7 @@ const CaretakerBasicInfo: React.FC = () => {
               style={styles.input}
               value={address}
               onChangeText={setAddress}
+              placeholderTextColor="#888"
             />
 
             {/* Date of Birth */}
@@ -190,6 +194,7 @@ const CaretakerBasicInfo: React.FC = () => {
                   style={styles.input}
                   value={experience}
                   onChangeText={setExperience}
+                  placeholderTextColor="#888"
                 />
               </View>
               <View style={styles.inputContainer}>
@@ -198,6 +203,7 @@ const CaretakerBasicInfo: React.FC = () => {
                   style={styles.input}
                   value={hrs}
                   onChangeText={setJobHrs}
+                  placeholderTextColor="#888"
                 />
               </View>
             </View>
@@ -293,6 +299,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "#FDE8E8",
     paddingHorizontal: 10,
+    color: "#333",
   },
   genderContainer: {
     flexDirection: "row",
