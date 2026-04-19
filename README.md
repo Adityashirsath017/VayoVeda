@@ -1,4 +1,4 @@
-# <img src="screenshots/logo.png" alt="Vayomitra Logo" width="60"/> Vayomitra – AI-Powered Elderly Care Assistant App
+# <img src="screenshots/logo.png" alt="Vayomitra Logo" width="60"/> VayoVeda – AI-Powered Elderly Care Assistant App
 
 
 An intelligent mobile app built with **React Native** to assist elderly users in health monitoring, emergency management, and daily well-being. Vayomitra leverages AI, NLP, Twilio, and Firebase to ensure safety, ease of use, and reliable communication with caregivers.
@@ -7,7 +7,7 @@ An intelligent mobile app built with **React Native** to assist elderly users in
 
 ## 📱 Overview
 
-**Vayomitra** is designed with empathy and modern technology to provide a digital companion for elderly individuals. Whether it’s managing medications, sending SOS alerts in emergencies, or answering queries via conversational AI — Vayomitra ensures that care is always a tap away.
+**VayoVeda** is designed with empathy and modern technology to provide a digital companion for elderly individuals. Whether it’s managing medications, sending SOS alerts in emergencies, or answering queries via conversational AI — VayoVeda ensures that care is always a tap away.
 
 ---
 
@@ -51,8 +51,8 @@ An intelligent mobile app built with **React Native** to assist elderly users in
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Adityashirsath017/vayomitra.git
-cd vayomitra
+git clone https://github.com/Adityashirsath017/VayoVeda.git
+cd VayoVeda
 ```
 
 ### 2. Install Dependencies
