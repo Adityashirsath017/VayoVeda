@@ -51,7 +51,7 @@ An intelligent mobile app built with **React Native** to assist elderly users in
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/vayomitra.git
+git clone https://github.com/Adityashirsath017/vayomitra.git
 cd vayomitra
 ```
 
