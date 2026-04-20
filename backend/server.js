@@ -112,8 +112,9 @@ app.post("/schedule-sms", async (req, res) => {
     }
 
     // Parse date and time: "2026-02-11" + "08:00 AM" -> Date object
+    // App is currently localized to IST (+05:30)
     const dateTimeString = `${date} ${time}`;
-    const scheduleDate = moment(dateTimeString, "YYYY-MM-DD hh:mm A").toDate();
+    const scheduleDate = moment(dateTimeString, "YYYY-MM-DD hh:mm A").utcOffset("+05:30", true).toDate();
 
     // Allow up to 1 minute in the past (to handle slight timing differences)
     const oneMinuteAgo = new Date(Date.now() - 60000);
