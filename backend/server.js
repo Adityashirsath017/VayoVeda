@@ -99,31 +99,38 @@ const moment = require('moment');
 
 app.post("/schedule-sms", async (req, res) => {
   try {
-    const { task, time, date } = req.body;
+    const { task, time, date, to } = req.body;
 
     if (!task || !time || !date) {
       return res.status(400).send({ success: false, error: "Missing task, time, or date" });
     }
 
+    // Use the 'to' phone number if provided, otherwise fallback to env variable
+    const recipientPhone = to || process.env.RECEIVER_PHONE_NUMBER;
+    if (!recipientPhone) {
+      return res.status(400).send({ success: false, error: "No recipient phone number available" });
+    }
+
     // Parse date and time: "2026-02-11" + "08:00 AM" -> Date object
-    // Assuming format "YYYY-MM-DD" and "hh:mm A"
     const dateTimeString = `${date} ${time}`;
     const scheduleDate = moment(dateTimeString, "YYYY-MM-DD hh:mm A").toDate();
 
-    if (scheduleDate < new Date()) {
+    // Allow up to 1 minute in the past (to handle slight timing differences)
+    const oneMinuteAgo = new Date(Date.now() - 60000);
+    if (scheduleDate < oneMinuteAgo) {
       return res.status(400).send({ success: false, error: "Scheduled time is in the past" });
     }
 
-    console.log(`Scheduling SMS for: ${task} at ${scheduleDate}`);
+    console.log(`Scheduling SMS for: "${task}" at ${scheduleDate} to ${recipientPhone}`);
 
     // Schedule the job
     schedule.scheduleJob(scheduleDate, async function () {
       try {
         console.log(`Sending Scheduled SMS for task: ${task}`);
         await client.messages.create({
-          body: `REMINDER: It's time for your task: "${task}". Please attend to it.`,
+          body: `⏰ REMINDER: It's time for "${task}". Please attend to it now.`,
           from: process.env.TWILIO_PHONE_NUMBER,
-          to: process.env.RECEIVER_PHONE_NUMBER,
+          to: recipientPhone,
         });
         console.log("Scheduled SMS sent successfully!");
       } catch (err) {
