@@ -8,14 +8,16 @@ import {
   TextInput,
   StyleSheet,
   Image,
-  Alert
+  Alert,
+  Platform
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import { Picker } from "@react-native-picker/picker";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import moment from "moment";
+import { FontAwesome5 } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { db, collection, addDoc, query, where, getDocs, updateDoc, arrayUnion, auth } from "../../config/firebaseConfig";
+import { db, collection, query, where, getDocs, updateDoc, arrayUnion, auth } from "../../config/firebaseConfig";
 import { useFocusEffect } from "expo-router";
 
 interface Medication {
@@ -33,6 +35,13 @@ export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
   const [medications, setMedications] = useState<Medication[]>([]);
   const [newMed, setNewMed] = useState({ name: "", time: "", dosage: "", schedule: "", type: "Tablet" });
+  const [isTimePickerVisible, setTimePickerVisible] = useState(false);
+
+  const handleTimeConfirm = (date: Date) => {
+    const formatted = moment(date).format("hh:mm A");
+    setNewMed({ ...newMed, time: formatted });
+    setTimePickerVisible(false);
+  };
 
   useFocusEffect(
     React.useCallback(() => {
@@ -251,16 +260,40 @@ export default function App() {
               />
             </View>
 
-            {/* Reminder Time Input */}
-            <View style={styles.inputContainer}>
-              <FontAwesome name="bell" size={20} color="#FF3D00" style={styles.inputIcon} />
-              <TextInput
-                placeholder="Select Reminder Time"
-                style={styles.input}
-                onChangeText={(text) => setNewMed({ ...newMed, time: text })}
-                value={newMed.time}
-              />
-            </View>
+            {/* Reminder Time - Clock Picker */}
+            {Platform.OS === 'web' ? (
+              <View style={styles.inputContainer}>
+                <FontAwesome name="bell" size={20} color="#FF3D00" style={styles.inputIcon} />
+                <TextInput
+                  style={[styles.input, { outlineStyle: 'none' } as any]}
+                  {...({ type: 'time' } as any)}
+                  value={newMed.time ? moment(newMed.time, "hh:mm A").format("HH:mm") : ""}
+                  onChange={(e) => {
+                    const formatted = moment(e.nativeEvent.text, "HH:mm").format("hh:mm A");
+                    setNewMed({ ...newMed, time: formatted });
+                  }}
+                />
+              </View>
+            ) : (
+              <>
+                <TouchableOpacity
+                  style={styles.inputContainer}
+                  onPress={() => setTimePickerVisible(true)}
+                >
+                  <FontAwesome name="bell" size={20} color="#FF3D00" style={styles.inputIcon} />
+                  <Text style={[styles.input, { lineHeight: 50, color: newMed.time ? '#333' : '#999' }]}>
+                    {newMed.time || "Select Reminder Time"}
+                  </Text>
+                  <FontAwesome5 name="clock" size={18} color="#FF3D00" />
+                </TouchableOpacity>
+                <DateTimePickerModal
+                  isVisible={isTimePickerVisible}
+                  mode="time"
+                  onConfirm={handleTimeConfirm}
+                  onCancel={() => setTimePickerVisible(false)}
+                />
+              </>
+            )}
 
             {/* Buttons Container */}
             <View style={styles.buttonContainer}>

@@ -55,11 +55,15 @@ export default function UpcomingReminders({ medications }: UpcomingRemindersProp
 
       {/* Medication List */}
       {medications.length === 0 ? (
-        <Text style={{ textAlign: "center", color: "#888", marginTop: 20 }}>No upcoming reminders found.</Text>
+        <Text style={{ textAlign: "center", color: "#888", marginTop: 20, marginBottom: 20 }}>No upcoming reminders found.</Text>
       ) : (
         <FlatList
           data={medications}
           keyExtractor={(item) => item.id}
+          nestedScrollEnabled={true}
+          scrollEnabled={true}
+          style={{ marginTop: 10, maxHeight: 300 }}
+          showsVerticalScrollIndicator={true}
           renderItem={({ item }) => (
             <View style={styles.medCard}>
               {/* Pill Icon */}
@@ -83,7 +87,6 @@ export default function UpcomingReminders({ medications }: UpcomingRemindersProp
               </View>
             </View>
           )}
-          style={{ marginTop: 10 }}
         />
       )}
     </View>
