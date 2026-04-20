@@ -300,13 +300,37 @@ const ScheduleScreen: React.FC = () => {
         const SERVER_URL = "https://vayoveda.onrender.com";
 
         try {
+          // Fetch caretaker's phone number to send reminder to
+          let caretakerPhone = "";
+          try {
+            // For elder: get caretaker phone via caretakerEmail stored in AsyncStorage
+            // For caretaker: use their own phone stored in Firestore
+            const cEmail = await AsyncStorage.getItem("caretakerEmail");
+            const selfEmail = await AsyncStorage.getItem("userEmail");
+            const role = await AsyncStorage.getItem("userRole");
+            const lookupEmail = role?.toLowerCase().trim() === "elder" ? cEmail : selfEmail;
+
+            if (lookupEmail) {
+              const usersRef2 = collection(db, "users");
+              const phoneQuery = query(usersRef2, where("email", "==", lookupEmail));
+              const phoneSnap = await getDocs(phoneQuery);
+              if (!phoneSnap.empty) {
+                const phoneData = phoneSnap.docs[0].data();
+                caretakerPhone = phoneData.phone || phoneData.contact || phoneData.phoneNumber || "";
+              }
+            }
+          } catch (phoneErr) {
+            console.error("Could not fetch phone for reminder:", phoneErr);
+          }
+
           fetch(`${SERVER_URL}/schedule-sms`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               task: newTask.task,
               time: newTask.time,
-              date: dateString
+              date: dateString,
+              to: caretakerPhone || undefined,
             }),
           }).catch(err => console.error("Failed to schedule SMS", err));
         } catch (smsError) {

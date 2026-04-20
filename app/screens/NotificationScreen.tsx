@@ -76,7 +76,7 @@ export default function NotificationScreen() {
         if (!elderSnapshot.empty) {
           const elderDoc = elderSnapshot.docs[0];
           const elderData = elderDoc.data();
-          const elderName = elderData.name || "Unknown Elder";
+          const elderName = `${elderData.firstName || elderData.name || "Unknown"} ${elderData.surname || ""}`.trim() || "Unknown Elder";
 
           if (Array.isArray(elderData.tasks)) {
             allTasks = elderData.tasks.map((task: any) => ({
@@ -119,7 +119,7 @@ export default function NotificationScreen() {
 
         eldersSnapshot.docs.forEach((elderDoc) => {
           const elderData = elderDoc.data();
-          const elderName = elderData.name || "Unknown Elder";
+          const elderName = `${elderData.firstName || elderData.name || "Unknown"} ${elderData.surname || ""}`.trim() || "Unknown Elder";
           // If the elder document has a tasks array, add tasks with additional elder info
           if (Array.isArray(elderData.tasks)) {
             const tasksWithElder = elderData.tasks.map((task: any) => ({

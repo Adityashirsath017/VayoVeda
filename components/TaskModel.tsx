@@ -17,7 +17,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ visible, onClose, onAdd }) => {
   // Default time to current time formatted as hh:mm A
   const [time, setTime] = useState(moment().format("hh:mm A"));
   const [task, setTask] = useState("");
-  const [elder, setElder] = useState("");
+  // elder field removed - auto-set from selected elder profile
   const [days, setDays] = useState("1");
   const [selectedColor, setSelectedColor] = useState(COLORS[0]);
 
@@ -40,17 +40,16 @@ const TaskModal: React.FC<TaskModalProps> = ({ visible, onClose, onAdd }) => {
   };
 
   const handleSubmit = () => {
-    if (!time || !task || !elder || !days) return alert("Please fill all fields");
+    if (!time || !task || !days) return alert("Please fill all fields");
 
     const parsedDays = parseInt(days, 10);
     if (isNaN(parsedDays) || parsedDays <= 0) {
       return alert("Number of days must be a valid positive integer");
     }
 
-    onAdd({ time, task, elder, status: "NA", days: parsedDays, color: selectedColor });
+    onAdd({ time, task, elder: "", status: "NA", days: parsedDays, color: selectedColor });
     setTime("");
     setTask("");
-    setElder("");
     setDays("1");
     setSelectedColor(COLORS[0]);
     onClose();
@@ -97,7 +96,6 @@ const TaskModal: React.FC<TaskModalProps> = ({ visible, onClose, onAdd }) => {
           )}
 
           <TextInput style={styles.input} placeholder="Task" onChangeText={setTask} value={task} />
-          <TextInput style={styles.input} placeholder="Elder Name" onChangeText={setElder} value={elder} />
 
           <TextInput
             style={styles.input}

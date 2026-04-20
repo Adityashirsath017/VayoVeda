@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Linking, Platform, Alert } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Platform, Alert } from "react-native";
 import { useRouter } from "expo-router";
 import * as Notifications from "expo-notifications";
 import * as Location from "expo-location";
@@ -68,32 +68,6 @@ export default function NotificationScreenElder() {
     }
   };
 
-  const makeEmergencyCall = async () => {
-    let emergencyNumber = "112"; // Fallback Emergency Number
-    try {
-      const caretakerEmail = await AsyncStorage.getItem("caretakerEmail");
-      if (caretakerEmail) {
-        const usersRef = collection(db, "users");
-        const q = query(usersRef, where("email", "==", caretakerEmail));
-        const querySnapshot = await getDocs(q);
-        if (!querySnapshot.empty) {
-          const caretakerData = querySnapshot.docs[0].data();
-          if (caretakerData.phone) {
-            emergencyNumber = caretakerData.phone;
-          }
-        }
-      }
-    } catch (e) {
-      console.error("Error fetching caretaker number for call:", e);
-    }
-
-    if (Platform.OS === 'web') {
-      Alert.alert("Emergency Call", `Calling ${emergencyNumber} (Simulated on Web)`);
-      console.log(`[Web] Emergency Call Triggered: ${emergencyNumber}`);
-    } else {
-      Linking.openURL(`tel:${emergencyNumber}`);
-    }
-  };
 
   // --- LOCKED LOGIC START: SOS SMS & Error Handling ---
   const sendSMSToBackend = async (locationLink: string) => {
@@ -186,11 +160,7 @@ export default function NotificationScreenElder() {
     setBgColor("#8B0000");
 
     try {
-      // 🚨 IMMEDIATE ACTIONS (Don't wait for location)
-      // playAlarm();       // Sound Alarm (Temporarily disabled due to expo-av crash on web)
-      makeEmergencyCall(); // Call Caretaker
-
-      // 📍 DELAYED ACTIONS (Wait for location)
+      // 📍 Get location first
       const locationLink = await getLiveLocation();
 
       // Check if location failed

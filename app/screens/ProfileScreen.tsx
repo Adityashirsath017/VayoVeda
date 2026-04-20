@@ -187,7 +187,7 @@ const ProfileScreen = () => {
         try {
             await auth.signOut();
             await AsyncStorage.clear();
-            router.replace("../(auth)/LoginScreen");
+            router.replace("../(auth)/roleselect");
         } catch (error) {
             console.error("Logout Error:", error);
             Alert.alert("Error", "Failed to log out.");
